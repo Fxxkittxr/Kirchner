@@ -1,3 +1,5 @@
+
+
 // --- DADOS (MOCK) ---
 const produtos = [
     { id: 1, nome: "Compressor Embraco 1/4 HP 110v R134a", categoria: "Compressores", marca: "Embraco", preco: 489.90, img: "https://www.girellirefrigeracao.com.br/upload/produto/imagem/s_motor-compressor-embraco-1-4-r134a-emr-80hlr-110v-4.webp", destaque: true, freteGratis: true, maisVendido: true },
@@ -8,6 +10,11 @@ const produtos = [
     { id: 6, nome: "Controlador Full Gauge TC-900E Power", categoria: "Elétrica", marca: "Full Gauge", preco: 195.00, img: "https://fullgauge-strapi-prod-media-f340da7.s3.sa-east-1.amazonaws.com/TC_900_E_POWER_6ae05541ef.png", destaque: true, freteGratis: true, maisVendido: true },
     { id: 7, nome: "Kit Tubo Cobre 1/4 e 3/8 (5m)", categoria: "Instalação", marca: "Eluma", preco: 180.00, img: "https://cdn.awsli.com.br/2094/2094747/produto/307926074/d_730396-mlb79444751754_102024-o-1cp2nvpntv.jpg", destaque: false, freteGratis: false, maisVendido: true },
     { id: 8, nome: "Motor Ventilador Axial 300mm FN030-4EK.WC.V7", categoria: "Ventiladores", marca: "ZIEHLABEGG", preco: 145.00, img: "https://images.tcdn.com.br/img/img_prod/570101/motor_ventilador_axial_300mm_fn030_4ek_wc_v7_ziehlabegg_19299_2_e36b359c13ddc866bff3ca34b7b706f5_20251103121649.jpg", destaque: false, freteGratis: true, maisVendido: false },
+];
+
+const historicoCompras = [
+    { data: "10/12/2025", pedido: "Compressor + Gás", status: "Finalizado", total: "R$ 1.239,90" },
+    { data: "02/01/2026", pedido: "Kit Manifold", status: "Em processamento", total: "R$ 220,50" }
 ];
 
 const marcas = [
@@ -40,22 +47,31 @@ window.onload = () => {
 
 // --- NAVEGAÇÃO SPA ---
 function navigateTo(viewId) {
-    // Esconde todas as views
     document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
     
-    // Lógica específica para cada view
-    if (viewId === 'home') {
-        renderHome();
-        document.getElementById('view-home').classList.add('active');
-    } else if (viewId === 'favorites') {
-        renderFavoritos();
-        document.getElementById('view-favorites').classList.add('active');
-    } else if (viewId === 'register') {
-        document.getElementById('view-register').classList.add('active');
-    }
+    if (viewId === 'home') renderHome();
+    else if (viewId === 'favorites') renderFavoritos();
+    else if (viewId === 'profile') renderPerfil(); // Nova View
     
-    // Reseta scroll
+    const targetView = document.getElementById(`view-${viewId}`);
+    if (targetView) targetView.classList.add('active');
+    
     window.scrollTo(0, 0);
+}
+
+function renderPerfil() {
+    const historyBody = document.getElementById('historyBody');
+    if (!historyBody) return;
+
+    // Gera as linhas da tabela dinamicamente
+    historyBody.innerHTML = historicoPedidos.map(pedido => `
+        <tr>
+            <td>#${pedido.id}</td>
+            <td>${pedido.data}</td>
+            <td>R$ ${pedido.total.toFixed(2).replace('.', ',')}</td>
+            <td style="color: ${pedido.status === 'Entregue' ? 'green' : 'orange'}">${pedido.status}</td>
+        </tr>
+    `).join('');
 }
 
 function iniciarBanner() {
@@ -485,4 +501,106 @@ function toggleMenu() {
         sidebarMenu.classList.add('open');
         menuOverlay.classList.add('open');
     }
+}
+
+// Atualize a função navigateTo para incluir 'profile'
+function navigateTo(viewId) {
+    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+    
+    if (viewId === 'home') renderHome();
+    if (viewId === 'favorites') renderFavoritos();
+    if (viewId === 'profile') renderPerfil(); // Nova chamada
+    
+    document.getElementById(`view-${viewId}`).classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+function renderPerfil() {
+    const tbody = document.getElementById('historyBody');
+    tbody.innerHTML = historicoCompras.map(compra => `
+        <tr>
+            <td>${compra.data}</td>
+            <td>${compra.pedido}</td>
+            <td style="color: green; font-weight: bold;">${compra.status}</td>
+            <td>${compra.total}</td>
+        </tr>
+    `).join('');
+}
+
+function renderFiltrosLaterais() {
+    const container = document.getElementById('filter-brands-list');
+    const marcasUnicas = [...new Set(produtos.map(p => p.marca))];
+    container.innerHTML = marcasUnicas.map(marca => `
+        <label><input type="checkbox" class="filter-brand" value="${marca}"> ${marca}</label>
+    `).join('');
+}
+
+function aplicarFiltrosAvancados() {
+    const marcasSelecionadas = Array.from(document.querySelectorAll('.filter-brand:checked')).map(el => el.value);
+    const precosSelecionados = Array.from(document.querySelectorAll('.filter-price:checked')).map(el => el.value);
+
+    let filtrados = produtos;
+
+    if (marcasSelecionadas.length > 0) {
+        filtrados = filtrados.filter(p => marcasSelecionadas.includes(p.marca));
+    }
+
+    if (precosSelecionados.length > 0) {
+        filtrados = filtrados.filter(p => {
+            if (precosSelecionados.includes("0-200") && p.preco <= 200) return true;
+            if (precosSelecionados.includes("200-1000") && p.preco > 200 && p.preco <= 1000) return true;
+            if (precosSelecionados.includes("1000+") && p.preco > 1000) return true;
+            return false;
+        });
+    }
+
+    mostrarLista(filtrados, "Resultados Filtrados");
+}
+
+// Chame renderFiltrosLaterais() dentro do window.onload
+
+// --- DADOS ADICIONAIS ---
+const historicoPedidos = [
+    { id: "1025", data: "15/12/2025", total: 489.90, status: "Entregue" },
+    { id: "1032", data: "02/01/2026", total: 195.00, status: "Processando" }
+];
+
+// 1. Adicione os dados do histórico no topo do script.js
+const historicoFake = [
+    { data: "05/01/2026", itens: "2x Compressor, 1x Gás", status: "Finalizado" },
+    { data: "02/01/2026", itens: "1x Kit Manifold", status: "Pendente" }
+];
+
+// 2. Atualize a função navigateTo
+function navigateTo(viewId) {
+    // Esconde todas as seções
+    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+    
+    // Se for para a home, renderiza os carrosséis
+    if (viewId === 'home') renderHome();
+    
+    // Se for para o perfil, renderiza o histórico
+    if (viewId === 'profile') renderPerfil();
+
+    // Mostra a seção desejada
+    const target = document.getElementById(`view-${viewId}`);
+    if (target) target.classList.add('active');
+    
+    window.scrollTo(0, 0);
+}
+
+// 3. Função para desenhar a tabela de histórico
+function renderPerfil() {
+    const container = document.getElementById('historyBody');
+    if (!container) return;
+
+    container.innerHTML = historicoFake.map(item => `
+        <tr style="border-top: 1px solid #eee; font-size: 14px;">
+            <td style="padding: 12px 0;">${item.data}</td>
+            <td>${item.itens}</td>
+            <td style="color: ${item.status === 'Finalizado' ? 'green' : 'orange'}; font-weight: bold;">
+                ${item.status}
+            </td>
+        </tr>
+    `).join('');
 }
