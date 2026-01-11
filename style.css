@@ -249,3 +249,42 @@ footer { background-color: var(--footer-bg); color: var(--footer-text); padding:
 @media (max-width: 768px) {
     .search-layout, .profile-content { grid-template-columns: 1fr; }
 }
+
+/* --- ADMIN STYLES --- */
+.admin-filters { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+.admin-filters input, .admin-filters select { padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+.admin-filters input[type="text"] { flex: 1; min-width: 200px; }
+
+.admin-table-container { background: white; border-radius: 8px; overflow-x: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.admin-table { width: 100%; border-collapse: collapse; text-align: left; }
+.admin-table th, .admin-table td { padding: 15px; border-bottom: 1px solid #eee; }
+.admin-table th { background: var(--azul-escuro); color: white; }
+
+.status-badge { padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: bold; }
+.status-aberto { background: #fff3e0; color: #ef1c00; }
+.status-recebido { background: #e8f5e9; color: #397fe9; }
+.status-preparando { background: #e3f2fd; color: #3bdd50; }
+.status-enviado { background: #e8f5e9; color: #cfb627; }
+.status-finalizado { background: #e8f5e9; color: #9529c7; }
+
+
+.btn-detalhes { background: var(--azul-claro); color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+
+.btn-clear-filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #666;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.btn-clear-filters:hover {
+    background-color: #e0e0e0;
+    color: var(--azul-escuro); /* Utilizando a variável de cor definida no seu CSS */
+}

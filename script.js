@@ -1,4 +1,26 @@
-
+//dados ficticios 
+let pedidos = [
+    {
+        id: 101,
+        cliente: "João Silva",
+        documento: "123.456.789-00",
+        data: "2026-01-10",
+        valorTotal: 524.90,
+        status: "Em Aberto",
+        endereco: "Rua das Flores, 50 - Joinville/SC",
+        itens: [{ nome: "Compressor Embraco", qtd: 1, preco: 489.90 }, { nome: "Capacitor", qtd: 1, preco: 35.00 }]
+    },
+    {
+        id: 102,
+        cliente: "Refrigeração Joinville LTDA",
+        documento: "12.345.678/0001-99",
+        data: "2026-01-11",
+        valorTotal: 750.00,
+        status: "Recebido",
+        endereco: "Av. Industrial, 1000 - Joinville/SC",
+        itens: [{ nome: "Gás R134a", qtd: 1, preco: 750.00 }]
+    }
+];
 
 // --- DADOS (MOCK) ---
 const produtos = [
@@ -603,4 +625,101 @@ function renderPerfil() {
             </td>
         </tr>
     `).join('');
+}
+
+// Atualize sua função navigateTo para incluir a view admin
+function navigateTo(viewId) {
+    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+    
+    if (viewId === 'home') renderHome();
+    if (viewId === 'favorites') renderFavoritos();
+    if (viewId === 'admin') renderAdmin(); // Nova chamada
+    
+    document.getElementById(`view-${viewId}`).classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+function renderAdmin(listaFiltrada = pedidos) {
+    const tbody = document.getElementById('adminPedidosLista');
+    tbody.innerHTML = '';
+
+    listaFiltrada.forEach(pedido => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${pedido.data.split('-').reverse().join('/')}</td>
+            <td>${pedido.cliente}</td>
+            <td>R$ ${pedido.valorTotal.toFixed(2)}</td>
+            <td><span class="status-badge status-${pedido.status.toLowerCase()}">${pedido.status}</span></td>
+            <td><button class="btn-detalhes" onclick="verDetalhesPedido(${pedido.id})">Detalhes</button></td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function filtrarPedidosAdmin() {
+    const busca = document.getElementById('adminSearch').value.toLowerCase();
+    const status = document.getElementById('filterStatus').value;
+    const data = document.getElementById('filterDate').value;
+
+    const filtrados = pedidos.filter(p => {
+        const matchesBusca = p.cliente.toLowerCase().includes(busca) || p.documento.includes(busca);
+        const matchesStatus = status === 'todos' || p.status === status;
+        const matchesData = !data || p.data === data;
+        return matchesBusca && matchesStatus && matchesData;
+    });
+
+    renderAdmin(filtrados);
+}
+
+function verDetalhesPedido(id) {
+    const p = pedidos.find(pedido => pedido.id === id);
+    const modal = document.getElementById('orderDetailModal');
+    const body = document.getElementById('orderDetailBody');
+
+    body.innerHTML = `
+        <p><strong>Cliente:</strong> ${p.cliente}</p>
+        <p><strong>CPF/CNPJ:</strong> ${p.documento}</p>
+        <p><strong>Endereço:</strong> ${p.endereco}</p>
+        <br><hr>
+        <h4>Itens:</h4>
+        <ul style="margin: 10px 0;">
+            ${p.itens.map(i => `<li>${i.qtd}x ${i.nome} - R$ ${i.preco.toFixed(2)}</li>`).join('')}
+        </ul>
+        <hr>
+        <div class="form-group">
+            <br>
+            <label>Alterar Situação:</label>
+            <select onchange="atualizarStatusPedido(${p.id}, this.value)">
+                <option ${p.status === 'Em Aberto' ? 'selected' : ''}>Aberto</option>
+                <option ${p.status === 'Recebido' ? 'selected' : ''}>Recebido</option>
+                <option ${p.status === 'Sendo Preparado' ? 'selected' : ''}>Preparando</option>
+                <option ${p.status === 'Enviado' ? 'selected' : ''}>Enviado</option>
+                <option ${p.status === 'Finalizado' ? 'selected' : ''}>Finalizado</option>
+            </select>
+        </div>
+    `;
+    modal.classList.add('open');
+}
+
+function atualizarStatusPedido(id, novoStatus) {
+    const pedido = pedidos.find(p => p.id === id);
+    if (pedido) {
+        pedido.status = novoStatus;
+        alert(`Pedido ${id} atualizado para: ${novoStatus}`);
+        renderAdmin();
+    }
+}
+
+function fecharModalPedido() {
+    document.getElementById('orderDetailModal').classList.remove('open');
+}
+
+function limparFiltrosAdmin() {
+    // 1. Reseta os valores dos elementos de input
+    document.getElementById('adminSearch').value = '';
+    document.getElementById('filterStatus').value = 'todos';
+    document.getElementById('filterDate').value = '';
+
+    // 2. Chama a renderização original passando a lista completa de pedidos
+    renderAdmin(pedidos);
 }

@@ -50,7 +50,7 @@
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <div class="logo" style="font-size: 18px; color: #333;">Menu</div>
         <button onclick="toggleMenu()" style="background:none; border:none; font-size: 24px; cursor: pointer;">&times;</button>
-    </div>
+    [</div>
 
     <h3>Categorias</h3>
     <ul>
@@ -71,6 +71,7 @@
         <li><a href="https://refrigeracaokirchner.ind.br/"><span class="material-icons">store</span> Sobre a Empresa</a></li>
         <li><a href="#"><span class="material-icons">contact_support</span> Fale Conosco</a></li>
     </ul>
+    <li><a href="#" onclick="navigateTo('admin'); toggleMenu()"><span class="material-icons">admin_panel_settings</span> Painel Administrativo</a></li>
 </aside>
 
     <div class="sidebar-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
@@ -256,7 +257,7 @@
             </div>
         </div>
     </div>
-
+em
     <a href="https://wa.me/5547996270011"_blank" class="whatsapp-float" id="whatsappBtn">
         <div class="whatsapp-text">Em caso de dúvidas, entre em contato</div>
         <div class="whatsapp-btn">
@@ -335,6 +336,58 @@
                 </table>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="view-admin" class="view-section">
+    <div class="container" style="margin-top: 20px;">
+        <h2>Gerenciamento de Pedidos (ADM)</h2>
+        
+        <div class="admin-filters">
+    <input type="text" id="adminSearch" placeholder="Buscar por cliente ou CPF/CNPJ..." oninput="filtrarPedidosAdmin()">
+    <select id="filterStatus" onchange="filtrarPedidosAdmin()">
+        <option value="todos">Todos os Status</option>
+        <option value="Em Aberto">Em Aberto</option>
+        <option value="Recebido">Recebido</option>
+        <option value="Sendo Preparado">Sendo Preparado</option>
+        <option value="Enviado">Enviado</option>
+        <option value="Finalizado">Finalizado</option>
+    </select>
+    <input type="date" id="filterDate" onchange="filtrarPedidosAdmin()">
+    
+    <button class="btn-clear-filters" onclick="limparFiltrosAdmin()">
+        <span class="material-icons" style="font-size: 18px;">filter_alt_off</span>
+        Limpar Filtros
+    </button>
+</div>
+
+        <div class="admin-table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th>Valor Total</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="adminPedidosLista">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="orderDetailModal">
+    <div class="cart-sidebar" style="max-width: 500px;">
+        <br>
+        <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+            <h3>Detalhes do Pedido</h3>
+            <button onclick="fecharModalPedido()" style="border:none; background:none; font-size:24px; cursor:pointer;">&times;</button>
+        </div>
+        <div id="orderDetailBody" style="flex:1; overflow-y:auto;">
+            </div>
     </div>
 </div>
 
