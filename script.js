@@ -32,7 +32,7 @@ const produtos = [
     { id: 6, nome: "Controlador Full Gauge TC-900E Power", categoria: "Elétrica", marca: "Full Gauge", preco: 195.00, img: "https://fullgauge-strapi-prod-media-f340da7.s3.sa-east-1.amazonaws.com/TC_900_E_POWER_6ae05541ef.png", destaque: true, freteGratis: true, maisVendido: true },
     { id: 7, nome: "Kit Tubo Cobre 1/4 e 3/8 (5m)", categoria: "Instalação", marca: "Eluma", preco: 180.00, img: "https://cdn.awsli.com.br/2094/2094747/produto/307926074/d_730396-mlb79444751754_102024-o-1cp2nvpntv.jpg", destaque: false, freteGratis: false, maisVendido: true },
     { id: 8, nome: "Motor Ventilador Axial 300mm FN030-4EK.WC.V7", categoria: "Ventiladores", marca: "ZIEHLABEGG", preco: 145.00, img: "https://images.tcdn.com.br/img/img_prod/570101/motor_ventilador_axial_300mm_fn030_4ek_wc_v7_ziehlabegg_19299_2_e36b359c13ddc866bff3ca34b7b706f5_20251103121649.jpg", destaque: false, freteGratis: true, maisVendido: false },
-];
+]; 
 
 const historicoCompras = [
     { data: "10/12/2025", pedido: "Compressor + Gás", status: "Finalizado", total: "R$ 1.239,90" },
