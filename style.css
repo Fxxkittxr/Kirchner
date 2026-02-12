@@ -12,7 +12,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-body { background-color: var(--cinza-fundo); color: var(--texto); padding-bottom: 80px; }
+body { background-color: var(--cinza-fundo); color: var(--texto); }
 
 /* Utilitários de Visibilidade (SPA) */
 .view-section { display: none; animation: fadeIn 0.3s; }

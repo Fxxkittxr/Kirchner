@@ -48,10 +48,9 @@ const marcas = [
 ];
 
 const banners = [
-    "https://via.placeholder.com/1200x300/0d47a1/ffffff?text=Ofertas+Imperdiveis+de+Verao",
-    "https://via.placeholder.com/1200x300/c01a0e/ffffff?text=Ferramentas+em+ate+10x",
-    "https://via.placeholder.com/1200x300/1a1a1a/ffffff?text=Frete+Gratis+Sul+e+Sudeste",
-    "https://via.placeholder.com/1200x300/ff9800/ffffff?text=Pecas+Originais+Brastemp"
+    "https://images.pexels.com/photos/5556317/pexels-photo-5556317.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "https://images.pexels.com/photos/5650042/pexels-photo-5650042.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+    "https://images.pexels.com/photos/3905874/pexels-photo-3905874.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
 ];
 
 // --- ESTADO DA APLICAÇÃO ---
@@ -198,17 +197,17 @@ function criarCard(prod) {
 }
 
 // --- BANNER ---
-function iniciarBanner() {
-    const img = document.getElementById('bannerImg');
-    setInterval(() => {
-        bannerIndex = (bannerIndex + 1) % banners.length;
-        img.style.opacity = 0;
-        setTimeout(() => {
-            img.src = banners[bannerIndex];
-            img.style.opacity = 1;
-        }, 200);
-    }, 4000);
-}
+// function iniciarBanner() {
+//     const img = document.getElementById('bannerImg');
+//     setInterval(() => {
+//         bannerIndex = (bannerIndex + 1) % banners.length;
+//         img.style.opacity = 0;
+//         setTimeout(() => {
+//             img.src = banners[bannerIndex];
+//             img.style.opacity = 1;
+//         }, 200);
+//     }, 4000);
+// }
 
 // --- DETALHES DO PRODUTO ---
 function abrirProduto(id) {
