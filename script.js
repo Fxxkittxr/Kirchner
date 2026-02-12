@@ -36,7 +36,7 @@ const produtos = [
 
 const historicoCompras = [
     { data: "10/12/2025", pedido: "Compressor + Gás", status: "Finalizado", total: "R$ 1.239,90" },
-    { data: "03/01/2026", pedido: "Kit Manifold", status: "Em processamento", total: "R$ 220,50" }
+    { data: "02/01/2026", pedido: "Kit Manifold", status: "Em processamento", total: "R$ 220,50" }
 ];
 
 const marcas = [
