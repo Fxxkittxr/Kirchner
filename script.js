@@ -1,4 +1,7 @@
-//dados ficticios 
+// ==========================================
+// 1. DADOS FICTÍCIOS (MOCKS)
+// ==========================================
+
 let pedidos = [
     {
         id: 101,
@@ -22,28 +25,45 @@ let pedidos = [
     }
 ];
 
-// --- DADOS (MOCK) ---
+// --- ADICIONADO: Atributos avançados (voltagem, cor, gas, capacidade) para os filtros funcionarem ---
 const produtos = [
-    { id: 1, nome: "Compressor Embraco 1/4 HP 110v R134a", categoria: "Compressores", marca: "Embraco", preco: 489.90, img: "https://www.girellirefrigeracao.com.br/upload/produto/imagem/s_motor-compressor-embraco-1-4-r134a-emr-80hlr-110v-4.webp", destaque: true, freteGratis: true, maisVendido: true },
-    { id: 2, nome: "Gás Refrigerante R134a 13.6kg DAC", categoria: "Gases", marca: "Chemours", preco: 750.00, img: "https://images.tcdn.com.br/img/img_prod/917493/gs_refrigerante_r134a_cilindro_dac_136kg_refrigera_1_20250725104042_c37fa1e16f7c.png", destaque: true, freteGratis: false, maisVendido: true },
-    { id: 3, nome: "Kit Manifold R410a/R22 com Mangueiras", categoria: "Ferramentas", marca: "EOS", preco: 220.50, img: "https://cdn.awsli.com.br/2500x2500/767/767714/produto/2705210714e7c74890c.jpg", destaque: false, freteGratis: true, maisVendido: false },
-    { id: 4, nome: "Capacitor 35uF 380VAC Fio", categoria: "Elétrica", marca: "Dugold", preco: 35.00, img: "https://http2.mlstatic.com/D_Q_NP_2X_923195-MLB71132121952_082023-T.webp", destaque: false, freteGratis: false, maisVendido: true },
-    { id: 5, nome: "Bomba de Vácuo 6CFM Duplo Estágio", categoria: "Ferramentas", marca: "Suryha", preco: 1250.00, img: "https://http2.mlstatic.com/D_832190-MLB89996676994_082025-O.jpg", destaque: true, freteGratis: true, maisVendido: false },
-    { id: 6, nome: "Controlador Full Gauge TC-900E Power", categoria: "Elétrica", marca: "Full Gauge", preco: 195.00, img: "https://fullgauge-strapi-prod-media-f340da7.s3.sa-east-1.amazonaws.com/TC_900_E_POWER_6ae05541ef.png", destaque: true, freteGratis: true, maisVendido: true },
-    { id: 7, nome: "Kit Tubo Cobre 1/4 e 3/8 (5m)", categoria: "Instalação", marca: "Eluma", preco: 180.00, img: "https://cdn.awsli.com.br/2094/2094747/produto/307926074/d_730396-mlb79444751754_102024-o-1cp2nvpntv.jpg", destaque: false, freteGratis: false, maisVendido: true },
-    { id: 8, nome: "Motor Ventilador Axial 300mm FN030-4EK.WC.V7", categoria: "Ventiladores", marca: "ZIEHLABEGG", preco: 145.00, img: "https://images.tcdn.com.br/img/img_prod/570101/motor_ventilador_axial_300mm_fn030_4ek_wc_v7_ziehlabegg_19299_2_e36b359c13ddc866bff3ca34b7b706f5_20251103121649.jpg", destaque: false, freteGratis: true, maisVendido: false },
+    { id: 1, nome: "Compressor Embraco 1/4 HP 110v R134a", categoria: "Compressores", marca: "Embraco", preco: 489.90, estoque: 15, img: "https://www.girellirefrigeracao.com.br/upload/produto/imagem/s_motor-compressor-embraco-1-4-r134a-emr-80hlr-110v-4.webp", destaque: true, freteGratis: true, maisVendido: true, voltagem: "110v", cor: "Preto", gas: "R134a", capacidade: "1/4 HP" },
+    { id: 2, nome: "Gás Refrigerante R134a 13.6kg DAC", categoria: "Gases", marca: "Chemours", preco: 750.00, estoque: 5, img: "https://images.tcdn.com.br/img/img_prod/917493/gs_refrigerante_r134a_cilindro_dac_136kg_refrigera_1_20250725104042_c37fa1e16f7c.png", destaque: true, freteGratis: false, maisVendido: true, voltagem: null, cor: null, gas: "R134a", capacidade: "13.6kg" },
+    { id: 3, nome: "Kit Manifold R410a/R22 com Mangueiras", categoria: "Ferramentas", marca: "EOS", preco: 220.50, estoque: 8, img: "https://cdn.awsli.com.br/2500x2500/767/767714/produto/2705210714e7c74890c.jpg", destaque: false, freteGratis: true, maisVendido: false, voltagem: null, cor: null, gas: "R410a/R22", capacidade: null },
+    { id: 4, nome: "Capacitor 35uF 380VAC Fio", categoria: "Elétrica", marca: "Dugold", preco: 35.00, estoque: 30, img: "https://http2.mlstatic.com/D_Q_NP_2X_923195-MLB71132121952_082023-T.webp", destaque: false, freteGratis: false, maisVendido: true, voltagem: "380v", cor: "Branco", gas: null, capacidade: "35uF" },
+    { id: 5, nome: "Bomba de Vácuo 6CFM Duplo Estágio", categoria: "Ferramentas", marca: "Suryha", preco: 1250.00, estoque: 2, img: "https://http2.mlstatic.com/D_832190-MLB89996676994_082025-O.jpg", destaque: true, freteGratis: true, maisVendido: false, voltagem: "Bivolt", cor: "Azul", gas: null, capacidade: "6 CFM" },
+    { id: 6, nome: "Controlador Full Gauge TC-900E Power", categoria: "Elétrica", marca: "Full Gauge", preco: 195.00, estoque: 12, img: "https://fullgauge-strapi-prod-media-f340da7.s3.sa-east-1.amazonaws.com/TC_900_E_POWER_6ae05541ef.png", destaque: true, freteGratis: true, maisVendido: true, voltagem: "Bivolt", cor: "Preto", gas: null, capacidade: null },
+    { id: 7, nome: "Kit Tubo Cobre 1/4 e 3/8 (5m)", categoria: "Instalação", marca: "Eluma", preco: 180.00, estoque: 0, img: "https://cdn.awsli.com.br/2094/2094747/produto/307926074/d_730396-mlb79444751754_102024-o-1cp2nvpntv.jpg", destaque: false, freteGratis: false, maisVendido: true, voltagem: null, cor: "Cobre", gas: null, capacidade: "5 Metros" },
+    { id: 8, nome: "Motor Ventilador Axial 300mm FN030-4EK.WC.V7", categoria: "Ventiladores", marca: "ZIEHLABEGG", preco: 145.00, estoque: 20, img: "https://images.tcdn.com.br/img/img_prod/570101/motor_ventilador_axial_300mm_fn030_4ek_wc_v7_ziehlabegg_19299_2_e36b359c13ddc866bff3ca34b7b706f5_20251103121649.jpg", destaque: false, freteGratis: true, maisVendido: false, voltagem: "220v", cor: "Preto", gas: null, capacidade: "300mm" },
 ]; 
 
-const historicoCompras = [
-    { data: "10/12/2025", pedido: "Compressor + Gás", status: "Finalizado", total: "R$ 1.239,90" },
-    { data: "02/01/2026", pedido: "Kit Manifold", status: "Em processamento", total: "R$ 220,50" }
+const historicoPedidos = [
+    { 
+        id: "1025", 
+        data: "15/12/2025", 
+        total: 1239.90, 
+        status: "Finalizado",
+        itens: [
+            { id: 1, nome: "Compressor Embraco 1/4 HP 110v R134a", preco: 489.90, qtd: 1, img: "https://www.girellirefrigeracao.com.br/upload/produto/imagem/s_motor-compressor-embraco-1-4-r134a-emr-80hlr-110v-4.webp" },
+            { id: 2, nome: "Gás Refrigerante R134a 13.6kg DAC", preco: 750.00, qtd: 1, img: "https://images.tcdn.com.br/img/img_prod/917493/gs_refrigerante_r134a_cilindro_dac_136kg_refrigera_1_20250725104042_c37fa1e16f7c.png" }
+        ]
+    },
+    { 
+        id: "1032", 
+        data: "02/01/2026", 
+        total: 220.50, 
+        status: "Processando",
+        itens: [
+            { id: 3, nome: "Kit Manifold R410a/R22 com Mangueiras", preco: 220.50, qtd: 1, img: "https://cdn.awsli.com.br/2500x2500/767/767714/produto/2705210714e7c74890c.jpg" }
+        ]
+    }
 ];
 
 const marcas = [
     { nome: "Embraco", img: "https://images.seeklogo.com/logo-png/31/2/embraco-logo-png_seeklogo-315841.png" },
     { nome: "Danfoss", img: "https://images.seeklogo.com/logo-png/3/2/danfoss-logo-png_seeklogo-38450.png" },
     { nome: "Full Gauge", img: "https://d5gag3xtge2og.cloudfront.net/producao/33153086/G/logo.png" },
-    { nome: "EOS", img: "https://yt3.googleusercontent.com/UNjWYqIzIamCkv9-zapGRw2RHm8pjt1Mo0tMFLFdm2mKAd-7e4ykkzCI2KoVbnDxI1OXHez26A=s900-c-k-c0x00ffffff-no-rj" }, // Placeholder se nao carregar
+    { nome: "EOS", img: "https://yt3.googleusercontent.com/UNjWYqIzIamCkv9-zapGRw2RHm8pjt1Mo0tMFLFdm2mKAd-7e4ykkzCI2KoVbnDxI1OXHez26A=s900-c-k-c0x00ffffff-no-rj" }, 
     { nome: "Thebe", img: "https://images.seeklogo.com/logo-png/30/2/thebe-bombas-hidraulicas-logo-png_seeklogo-305741.png" },
 ];
 
@@ -53,134 +73,124 @@ const banners = [
     "https://images.pexels.com/photos/3905874/pexels-photo-3905874.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
 ];
 
-// --- ESTADO DA APLICAÇÃO ---
+// ==========================================
+// 2. ESTADO DA APLICAÇÃO
+// ==========================================
+
 let carrinho = [];
 let favoritos = [];
 let bannerIndex = 0;
 let bannerInterval = null;
 
-// --- INICIALIZAÇÃO ---
+// ==========================================
+// 3. INICIALIZAÇÃO E NAVEGAÇÃO
+// ==========================================
+
 window.onload = () => {
     renderHome();
     iniciarBanner();
     atualizarCarrinhoUI();
+    renderFiltrosLaterais(); // Gera os filtros laterais ao abrir o site
 };
 
-// --- NAVEGAÇÃO SPA ---
 function navigateTo(viewId) {
     document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
     
-    if (viewId === 'home') renderHome();
-    else if (viewId === 'favorites') renderFavoritos();
-    else if (viewId === 'profile') renderPerfil(); // Nova View
+    // Controle Categorias
+    const categoriesBar = document.querySelector('.categories');
+    if (categoriesBar) {
+        if (viewId === 'admin' || viewId === 'estoque') {
+            categoriesBar.style.display = 'none';
+        } else {
+            categoriesBar.style.display = 'block';
+        }
+    }
+
+    // Controle WhatsApp Float
+    const zapBtn = document.getElementById('whatsappBtn');
+    if (zapBtn) {
+        if (viewId === 'admin' || viewId === 'estoque') {
+            zapBtn.style.display = 'none';
+        } else {
+            zapBtn.style.display = 'flex';
+        }
+    }
     
-    const targetView = document.getElementById(`view-${viewId}`);
-    if (targetView) targetView.classList.add('active');
+    if (viewId === 'home') { renderHome(); marcarCategoriaAtiva('Início'); }
+    if (viewId === 'favorites') renderFavoritos();
+    if (viewId === 'profile') renderPerfil(); 
+    if (viewId === 'admin') renderAdmin(); 
+    if (viewId === 'cart') renderCarrinhoPagina(); 
+    if (viewId === 'estoque') renderEstoque(); 
+    
+    const target = document.getElementById(`view-${viewId}`);
+    if (target) target.classList.add('active');
     
     window.scrollTo(0, 0);
 }
 
-function renderPerfil() {
-    const historyBody = document.getElementById('historyBody');
-    if (!historyBody) return;
-
-    // Gera as linhas da tabela dinamicamente
-    historyBody.innerHTML = historicoPedidos.map(pedido => `
-        <tr>
-            <td>#${pedido.id}</td>
-            <td>${pedido.data}</td>
-            <td>R$ ${pedido.total.toFixed(2).replace('.', ',')}</td>
-            <td style="color: ${pedido.status === 'Entregue' ? 'green' : 'orange'}">${pedido.status}</td>
-        </tr>
-    `).join('');
-}
+// ==========================================
+// 4. HOME E PRODUTOS
+// ==========================================
 
 function iniciarBanner() {
     const img = document.getElementById('bannerImg');
-    
-    // 1. LIMPEZA: Se já existir um timer rodando, mata ele antes de criar outro.
-    // Isso impede que os banners se sobreponham ou pisquem.
+    if (!img) return;
+
     if (bannerInterval) clearInterval(bannerInterval);
 
-    // 2. CRIA O NOVO TIMER
     bannerInterval = setInterval(() => {
-        // Passo A: Começa a sumir (fade-out)
         img.style.opacity = 0;
-
-        // Passo B: Espera o tempo da transição do CSS (que é 1s = 1000ms)
         setTimeout(() => {
-            // Avança o índice
             bannerIndex = (bannerIndex + 1) % banners.length;
-            
-            // Troca a imagem (enquanto ela está invisível)
             img.src = banners[bannerIndex];
-            
-            // IMPORTANTE: Só faz aparecer de novo quando a imagem carregar
-            // Isso evita mostrar imagem quebrada ou espaço em branco se a net for lenta
-            img.onload = () => {
-                img.style.opacity = 1; // Fade-in
-            };
-            
-            // Fallback: Se a imagem já estiver em cache, o onload pode não disparar
-            // então forçamos a aparição após um breve momento por segurança
+            img.onload = () => { img.style.opacity = 1; };
             setTimeout(() => img.style.opacity = 1, 50);
-
-        }, 1000); // Esse 1000 deve ser igual ao tempo de transição no CSS
-
-    }, 5000); // Troca de banner a cada 5 segundos (4s + 1s de transição)
+        }, 1000); 
+    }, 5000); 
 }
 
-// --- LOGICA DA HOME ---
 function renderHome() {
-    // Renderiza Seções
     renderHorizontalList('gridFreteGratis', produtos.filter(p => p.freteGratis));
     renderHorizontalList('gridDestaques', produtos.filter(p => p.destaque));
     renderHorizontalList('gridMaisProcurados', produtos.filter(p => p.maisVendido));
     
-    // Renderiza Marcas
     const gridMarcas = document.getElementById('gridMarcas');
-    gridMarcas.innerHTML = '';
-    marcas.forEach(marca => {
-        const div = document.createElement('div');
-        div.className = 'brand-item';
-        div.onclick = () => filtrarMarca(marca.nome);
-        div.innerHTML = `<img src="${marca.img}" alt="${marca.nome}" onerror="this.src='https://via.placeholder.com/100?text=${marca.nome}'">`;
-        gridMarcas.appendChild(div);
-    });
+    if(gridMarcas) {
+        gridMarcas.innerHTML = '';
+        marcas.forEach(marca => {
+            const div = document.createElement('div');
+            div.className = 'brand-item';
+            div.onclick = () => filtrarMarca(marca.nome);
+            div.innerHTML = `<img src="${marca.img}" alt="${marca.nome}" onerror="this.src='https://via.placeholder.com/100?text=${marca.nome}'">`;
+            gridMarcas.appendChild(div);
+        });
+    }
 }
 
 function renderHorizontalList(containerId, lista) {
     const container = document.getElementById(containerId);
-    container.innerHTML = '';
+    if (!container) return;
     
-    // Se a lista estiver vazia, nem renderiza nada e esconde os botões
+    container.innerHTML = '';
     if (lista.length === 0) {
         atualizarBotoesCarrossel(containerId);
         return;
     }
 
     lista.forEach(prod => container.appendChild(criarCard(prod)));
-    
-    // VERIFICAÇÃO IMEDIATA: Após adicionar os cards, verifica se precisa dos botões
-    // O setTimeout(..., 0) garante que o navegador já renderizou o tamanho dos elementos
-    setTimeout(() => {
-        atualizarBotoesCarrossel(containerId);
-    }, 0);
+    setTimeout(() => { atualizarBotoesCarrossel(containerId); }, 0);
 }
 
 function criarCard(prod) {
     const div = document.createElement('div');
     div.className = 'card';
     
-    // Verifica se já é favorito para marcar a classe 'active'
     const isFav = favoritos.includes(prod.id) ? 'active' : '';
     const iconFav = isFav ? 'favorite' : 'favorite_border';
 
-    // AQUI ESTÁ A MUDANÇA:
-    // 1. Adicionei a classe "fav-btn-${prod.id}" para identificar o botão.
-    // 2. Removi o "this" do onclick, pois vamos buscar os botões pelo ID.
     div.innerHTML = `
-        <div class="fav-btn ${isFav} fav-btn-${prod.id}" onclick="toggleFavorito(${prod.id})">
+        <div class="fav-btn ${isFav} fav-btn-${prod.id}" onclick="toggleFavorito(${prod.id}); event.stopPropagation();">
             <span class="material-icons">${iconFav}</span>
         </div>
         <div class="card-img-container" onclick="abrirProduto(${prod.id})">
@@ -196,25 +206,13 @@ function criarCard(prod) {
     return div;
 }
 
-// --- BANNER ---
-// function iniciarBanner() {
-//     const img = document.getElementById('bannerImg');
-//     setInterval(() => {
-//         bannerIndex = (bannerIndex + 1) % banners.length;
-//         img.style.opacity = 0;
-//         setTimeout(() => {
-//             img.src = banners[bannerIndex];
-//             img.style.opacity = 1;
-//         }, 200);
-//     }, 4000);
-// }
-
-// --- DETALHES DO PRODUTO ---
 function abrirProduto(id) {
     const prod = produtos.find(p => p.id === id);
     if (!prod) return;
 
     const content = document.getElementById('productDetailContent');
+    if(!content) return;
+
     content.innerHTML = `
         <div class="detail-gallery">
             <img src="${prod.img}" alt="${prod.nome}">
@@ -232,7 +230,7 @@ function abrirProduto(id) {
 
             <div class="action-buttons">
                 <button class="btn-buy-now" onclick="comprarAgora(${prod.id})">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384023.png" alt="WhatsApp" style="width: 24px; height: 24px; object-fit: contain;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 24px; height: 24px; object-fit: contain;">
                     Comprar Agora
                 </button>
                 <button class="btn-add-cart" onclick="adicionarCarrinhoDetalhe(${prod.id})">
@@ -247,40 +245,210 @@ function abrirProduto(id) {
         </div>
     `;
 
-    // Muda a view
     document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
     document.getElementById('view-product').classList.add('active');
     window.scrollTo(0, 0);
 }
 
-function comprarAgora(id) {
-    const prod = produtos.find(p => p.id === id);
-    const qtd = document.getElementById('qtyInput').value;
-    const total = (prod.preco * qtd).toFixed(2);
-    
-    const msg = `Olá, gostaria de comprar agora:%0A- ${qtd}x ${prod.nome}%0AValor Total: R$ ${total}`;
-    window.open(`https://wa.me/5547996270011?text=${msg}`, '_blank');
-}
+// ==========================================
+// 5. CARRINHO E ORÇAMENTO
+// ==========================================
 
-function adicionarCarrinho(id) {
+function adicionarCarrinhoDetalhe(id) {
+    const qtdInput = document.getElementById('qtyInput');
+    const qtd = parseInt(qtdInput.value) || 1;
     const prod = produtos.find(p => p.id === id);
     const itemExistente = carrinho.find(item => item.id === id);
 
     if (itemExistente) {
-        // Se já existe, só aumenta a quantidade
-        itemExistente.qtd += 1;
+        itemExistente.qtd += qtd;
     } else {
-        // Se não existe, adiciona ao carrinho com qtd = 1
-        // Usamos { ...prod } para criar uma cópia e não alterar o original
-        carrinho.push({ ...prod, qtd: 1 });
+        carrinho.push({ ...prod, qtd: qtd });
     }
     
     atualizarCarrinhoUI();
     toggleCart(true);
 }
 
-// --- LISTAGEM E FILTROS ---
+function recomprarItem(idProduto, qtdParaAdicionar) {
+    const prod = produtos.find(p => p.id === idProduto);
+    if (!prod) return;
+    
+    const itemExistente = carrinho.find(item => item.id === idProduto);
+    if (itemExistente) {
+        itemExistente.qtd += qtdParaAdicionar;
+    } else {
+        carrinho.push({ ...prod, qtd: qtdParaAdicionar });
+    }
+    
+    atualizarCarrinhoUI();
+    toggleCart(true);
+}
+
+function atualizarCarrinhoUI() {
+    const totalItens = carrinho.reduce((acc, item) => acc + item.qtd, 0);
+    const elCartCount = document.getElementById('cartCount');
+    if(elCartCount) elCartCount.innerText = totalItens;
+
+    const totalValor = carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
+    const elCartTotal = document.getElementById('cartTotal');
+    if(elCartTotal) elCartTotal.innerText = `R$ ${totalValor.toFixed(2).replace('.', ',')}`;
+    
+    const container = document.getElementById('cartItemsContainer');
+    if(container) {
+        container.innerHTML = '';
+        if (carrinho.length === 0) {
+            container.innerHTML = '<p style="text-align: center; color: #999; margin-top: 20px;">Seu carrinho está vazio.</p>';
+        } else {
+            carrinho.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <img src="${item.img}">
+                    <div style="flex:1">
+                        <div style="font-size:14px; font-weight:bold;">
+                            <span style="color:var(--azul-escuro);">${item.qtd}x</span> ${item.nome}
+                        </div>
+                        <div style="color: #666; font-size: 12px;">Unit: R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
+                        <div style="color: var(--azul-escuro); font-weight:bold;">Total: R$ ${(item.preco * item.qtd).toFixed(2).replace('.', ',')}</div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
+                        <button style="color: #e53935; border:none; background:none; cursor:pointer" onclick="removerDoCarrinho(${index})">
+                            <span class="material-icons">delete</span>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+    }
+
+    const viewCart = document.getElementById('view-cart');
+    if(viewCart && viewCart.classList.contains('active')) {
+        renderCarrinhoPagina();
+    }
+}
+
+function removerDoCarrinho(index) {
+    carrinho.splice(index, 1);
+    atualizarCarrinhoUI();
+}
+
+function abrirPaginaCarrinho() {
+    toggleCart(false); 
+    navigateTo('cart'); 
+}
+
+function renderCarrinhoPagina() {
+    const container = document.getElementById('cartPageItems');
+    const totalTexto = document.getElementById('cartPageTotal');
+    
+    if (!container || !totalTexto) return;
+    container.innerHTML = '';
+    
+    if (carrinho.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: #999; padding: 40px 0;">Não há itens no seu orçamento no momento.</p>';
+        totalTexto.innerText = 'R$ 0,00';
+        return;
+    }
+
+    let totalValor = 0;
+
+    carrinho.forEach((item, index) => {
+        totalValor += item.preco * item.qtd;
+        const div = document.createElement('div');
+        div.className = 'cart-page-item';
+        div.innerHTML = `
+            <img src="${item.img}" alt="${item.nome}">
+            <div class="cart-page-item-info">
+                <div class="cart-page-item-title">${item.nome}</div>
+                <div style="color: #666; font-size: 14px;">Valor Unitário: R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
+            </div>
+            <div class="cart-page-item-actions">
+                <div class="qty-selector">
+                    <input type="number" value="${item.qtd}" min="1" onchange="atualizarQtdCarrinho(${index}, this.value)">
+                </div>
+                <div style="font-weight: bold; color: var(--azul-escuro); width: 100px; text-align: right;">
+                    R$ ${(item.preco * item.qtd).toFixed(2).replace('.', ',')}
+                </div>
+                <button style="color: #e53935; border:none; background:none; cursor:pointer; padding: 5px;" onclick="removerDoCarrinho(${index})">
+                    <span class="material-icons">delete</span>
+                </button>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+
+    totalTexto.innerText = `R$ ${totalValor.toFixed(2).replace('.', ',')}`;
+}
+
+function atualizarQtdCarrinho(index, novaQtd) {
+    novaQtd = parseInt(novaQtd);
+    if (novaQtd >= 1) {
+        carrinho[index].qtd = novaQtd;
+        atualizarCarrinhoUI(); 
+    }
+}
+
+function toggleCart(forceOpen) {
+    const modal = document.getElementById('cartModal');
+    const zapBtn = document.getElementById('whatsappBtn');
+    if(!modal) return;
+    
+    if (forceOpen === true || !modal.classList.contains('open')) {
+        modal.classList.add('open');
+        if(zapBtn) zapBtn.classList.add('move-left');
+    } else {
+        modal.classList.remove('open');
+        if(zapBtn) zapBtn.classList.remove('move-left');
+    }
+}
+
+// ==========================================
+// 6. WHATSAPP
+// ==========================================
+
+function comprarAgora(id) {
+    const prod = produtos.find(p => p.id === id);
+    const qtd = document.getElementById('qtyInput') ? document.getElementById('qtyInput').value : 1;
+    const total = (prod.preco * qtd).toFixed(2);
+    
+    const msg = `Olá, gostaria de comprar agora:%0A- ${qtd}x ${prod.nome}%0AValor Total: R$ ${total}`;
+    window.open(`https://wa.me/5547996270011?text=${msg}`, '_blank');
+}
+
+function finalizarZap() {
+    if (carrinho.length === 0) return alert("Carrinho vazio!");
+    
+    let msg = "Olá, vim pelo site e gostaria de cotar:%0A%0A";
+    
+    carrinho.forEach(item => {
+        msg += `- *${item.qtd}x* ${item.nome} (R$ ${(item.preco * item.qtd).toFixed(2)})%0A`;
+    });
+    
+    const cartPageAtiva = document.getElementById('view-cart').classList.contains('active');
+    const totalTexto = cartPageAtiva ? document.getElementById('cartPageTotal').innerText : document.getElementById('cartTotal').innerText;
+    
+    msg += `%0A*Total Geral: ${totalTexto}*`;
+    window.open(`https://wa.me/5547996270011?text=${msg}`, '_blank');
+}
+
+// ==========================================
+// 7. LISTAGEM, BUSCA E FILTROS AVANÇADOS
+// ==========================================
+
+function marcarCategoriaAtiva(categoria) {
+    const botoes = document.querySelectorAll('.cat-btn');
+    botoes.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.innerText.trim() === categoria) {
+            btn.classList.add('active');
+        }
+    });
+}
+
 function filtrarCategoria(cat) {
+    marcarCategoriaAtiva(cat); 
     mostrarLista(produtos.filter(p => p.categoria === cat), `Categoria: ${cat}`);
 }
 
@@ -290,50 +458,125 @@ function filtrarMarca(marca) {
 }
 
 function buscarProdutos() {
-    const termo = document.getElementById('searchInput').value.toLowerCase();
+    const input = document.getElementById('searchInput');
+    if(!input) return;
+    const termo = input.value.toLowerCase();
     if(!termo) return;
     mostrarLista(produtos.filter(p => p.nome.toLowerCase().includes(termo)), `Busca: "${termo}"`);
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    if(searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') buscarProdutos();
+        });
+    }
+});
+
 function mostrarLista(lista, titulo) {
     const grid = document.getElementById('gridListagem');
-    document.getElementById('listTitle').innerText = titulo;
+    const elTitle = document.getElementById('listTitle');
+    if(!grid || !elTitle) return;
+
+    elTitle.innerText = titulo;
     grid.innerHTML = '';
     
-    if(lista.length === 0) grid.innerHTML = '<p>Nenhum item encontrado.</p>';
+    if(lista.length === 0) grid.innerHTML = '<p style="grid-column: 1 / -1;">Nenhum item encontrado com esses filtros.</p>';
     else lista.forEach(prod => grid.appendChild(criarCard(prod)));
 
-    // Navegação
     document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
     document.getElementById('view-list').classList.add('active');
+    window.scrollTo(0, 0);
 }
 
-// --- FAVORITOS ---
+// --- NOVA LÓGICA DE FILTROS LATERAIS ---
+function renderFiltrosLaterais() {
+    // Função auxiliar para criar as caixinhas de marcação (checkbox) dinamicamente
+    function renderCheckboxes(containerId, propriedade, classeFiltro) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        
+        // Pega os valores únicos e que não sejam nulos ou vazios
+        const valoresUnicos = [...new Set(produtos.map(p => p[propriedade]).filter(val => val))].sort();
+        
+        container.innerHTML = valoresUnicos.map(val => `
+            <label style="cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" class="${classeFiltro}" value="${val}"> ${val}
+            </label>
+        `).join('');
+    }
+
+    renderCheckboxes('filter-categories-list', 'categoria', 'filter-cat');
+    renderCheckboxes('filter-brands-list', 'marca', 'filter-brand');
+    renderCheckboxes('filter-voltagem-list', 'voltagem', 'filter-voltagem');
+    renderCheckboxes('filter-cor-list', 'cor', 'filter-cor');
+    renderCheckboxes('filter-gas-list', 'gas', 'filter-gas');
+    renderCheckboxes('filter-capacidade-list', 'capacidade', 'filter-capacidade');
+}
+
+function aplicarFiltrosAvancados() {
+    // Coleta as escolhas do usuário
+    const catSelecionadas = Array.from(document.querySelectorAll('.filter-cat:checked')).map(el => el.value);
+    const marcasSelecionadas = Array.from(document.querySelectorAll('.filter-brand:checked')).map(el => el.value);
+    const voltSelecionadas = Array.from(document.querySelectorAll('.filter-voltagem:checked')).map(el => el.value);
+    const coresSelecionadas = Array.from(document.querySelectorAll('.filter-cor:checked')).map(el => el.value);
+    const gasesSelecionados = Array.from(document.querySelectorAll('.filter-gas:checked')).map(el => el.value);
+    const capSelecionadas = Array.from(document.querySelectorAll('.filter-capacidade:checked')).map(el => el.value);
+    
+    const maxPriceInput = document.getElementById('filter-max-price').value;
+    const maxPrice = maxPriceInput ? parseFloat(maxPriceInput) : null;
+
+    let filtrados = produtos;
+
+    // Aplica as filtragens uma a uma
+    if (catSelecionadas.length > 0) filtrados = filtrados.filter(p => catSelecionadas.includes(p.categoria));
+    if (marcasSelecionadas.length > 0) filtrados = filtrados.filter(p => marcasSelecionadas.includes(p.marca));
+    if (voltSelecionadas.length > 0) filtrados = filtrados.filter(p => voltSelecionadas.includes(p.voltagem));
+    if (coresSelecionadas.length > 0) filtrados = filtrados.filter(p => coresSelecionadas.includes(p.cor));
+    if (gasesSelecionados.length > 0) filtrados = filtrados.filter(p => gasesSelecionados.includes(p.gas));
+    if (capSelecionadas.length > 0) filtrados = filtrados.filter(p => capSelecionadas.includes(p.capacidade));
+    
+    // Filtro de preço
+    if (maxPrice !== null && !isNaN(maxPrice)) {
+        filtrados = filtrados.filter(p => p.preco <= maxPrice);
+    }
+
+    marcarCategoriaAtiva(''); // Limpa a categoria colorida no menu de cima
+    mostrarLista(filtrados, "Resultados Filtrados");
+}
+
+function limparFiltrosListagem() {
+    // Desmarca tudo e zera o preço
+    document.querySelectorAll('.filters-sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.getElementById('filter-max-price').value = '';
+    
+    // Mostra tudo de novo
+    aplicarFiltrosAvancados();
+}
+
+// ==========================================
+// 8. FAVORITOS
+// ==========================================
+
 function toggleFavorito(id) {
-    // 1. Atualiza a lista de IDs (Array)
     if (favoritos.includes(id)) {
         favoritos = favoritos.filter(favId => favId !== id);
     } else {
         favoritos.push(id);
     }
 
-    // 2. Atualiza TODOS os botões desse produto na tela
-    // Busca todos os elementos que tenham a classe "fav-btn-1", "fav-btn-2", etc.
     const botoesNaTela = document.querySelectorAll(`.fav-btn-${id}`);
-
     botoesNaTela.forEach(btn => {
         if (favoritos.includes(id)) {
-            // Se virou favorito: pinta de vermelho e põe coração cheio
             btn.classList.add('active');
             btn.querySelector('span').innerText = 'favorite';
         } else {
-            // Se deixou de ser favorito: tira o vermelho e põe coração vazio
             btn.classList.remove('active');
             btn.querySelector('span').innerText = 'favorite_border';
         }
     });
 
-    // 3. Se estivermos com a tela de "Meus Favoritos" aberta, atualiza ela também
     const viewFavorites = document.getElementById('view-favorites');
     if(viewFavorites && viewFavorites.classList.contains('active')) {
         renderFavoritos();
@@ -342,6 +585,8 @@ function toggleFavorito(id) {
 
 function renderFavoritos() {
     const grid = document.getElementById('gridFavoritos');
+    if(!grid) return;
+    
     grid.innerHTML = '';
     const listaFav = produtos.filter(p => favoritos.includes(p.id));
 
@@ -352,294 +597,102 @@ function renderFavoritos() {
     }
 }
 
-// --- CARRINHO & INTERFACE ---
-function adicionarCarrinhoDetalhe(id) {
-    // Pega a quantidade que está na caixinha de número
-    const qtdInput = document.getElementById('qtyInput');
-    const qtd = parseInt(qtdInput.value);
-
-    // Encontra o produto no banco de dados
-    const prod = produtos.find(p => p.id === id);
-    
-    // Verifica se já tem no carrinho
-    const itemExistente = carrinho.find(item => item.id === id);
-
-    if (itemExistente) {
-        // Se já existe, soma a quantidade escolhida à quantidade atual
-        itemExistente.qtd += qtd;
-    } else {
-        // Se não existe, cria o item com a quantidade escolhida
-        carrinho.push({ ...prod, qtd: qtd });
-    }
-    
-    // Atualiza a tela e abre o carrinho
-    atualizarCarrinhoUI();
-    toggleCart(true);
-}
-
-function atualizarCarrinhoUI() {
-    // Atualiza a bolinha vermelha com a SOMA das quantidades
-    const totalItens = carrinho.reduce((acc, item) => acc + item.qtd, 0);
-    document.getElementById('cartCount').innerText = totalItens;
-
-    // Calcula o preço total (Preço x Quantidade)
-    const totalValor = carrinho.reduce((acc, item) => acc + (item.preco * item.qtd), 0);
-    document.getElementById('cartTotal').innerText = `R$ ${totalValor.toFixed(2).replace('.', ',')}`;
-    
-    const container = document.getElementById('cartItemsContainer');
-    container.innerHTML = '';
-
-    if (carrinho.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #999; margin-top: 20px;">Seu carrinho está vazio.</p>';
-    } else {
-        carrinho.forEach((item, index) => {
-            const div = document.createElement('div');
-            div.className = 'cart-item';
-            div.innerHTML = `
-                <img src="${item.img}">
-                <div style="flex:1">
-                    <div style="font-size:14px; font-weight:bold;">
-                        <span style="color:var(--azul-escuro);">${item.qtd}x</span> ${item.nome}
-                    </div>
-                    <div style="color: #666; font-size: 12px;">Unit: R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
-                    <div style="color: var(--azul-escuro); font-weight:bold;">Total: R$ ${(item.preco * item.qtd).toFixed(2).replace('.', ',')}</div>
-                </div>
-                
-                <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
-                    <button style="color: #e53935; border:none; background:none; cursor:pointer" onclick="removerDoCarrinho(${index})">
-                        <span class="material-icons">delete</span>
-                    </button>
-                </div>
-            `;
-            container.appendChild(div);
-        });
-    }
-}
-
-function removerDoCarrinho(index) {
-    carrinho.splice(index, 1);
-    atualizarCarrinhoUI();
-}
-
-function toggleCart(forceOpen) {
-    const modal = document.getElementById('cartModal');
-    const zapBtn = document.getElementById('whatsappBtn');
-    
-    if (forceOpen === true || !modal.classList.contains('open')) {
-        modal.classList.add('open');
-        zapBtn.classList.add('move-left');
-    } else {
-        modal.classList.remove('open');
-        zapBtn.classList.remove('move-left');
-    }
-}
-
-function toggleMenu() {
-    document.getElementById('sidebarMenu').classList.toggle('open');
-    document.getElementById('menuOverlay').classList.toggle('open');
-}
-
-function finalizarZap() {
-    if (carrinho.length === 0) return alert("Carrinho vazio!");
-    
-    let msg = "Olá, vim pelo site e gostaria de cotar:%0A%0A";
-    
-    carrinho.forEach(item => {
-        // Formata a mensagem: 2x Nome do Produto (R$ Total)
-        msg += `- *${item.qtd}x* ${item.nome} (R$ ${(item.preco * item.qtd).toFixed(2)})%0A`;
-    });
-    
-    const totalTexto = document.getElementById('cartTotal').innerText;
-    msg += `%0A*Total Geral: ${totalTexto}*`;
-    
-    window.open(`https://wa.me/5547996270011?text=${msg}`, '_blank');
-}
-
-// Enter na busca
-document.getElementById('searchInput').addEventListener('keypress', (e) => {
-    if(e.key === 'Enter') buscarProdutos();
-});
-
-// --- FUNÇÃO DE ROLAGEM DO CARROSSEL ---
-function scrollCarousel(containerId, direction) {
-    const container = document.getElementById(containerId);
-    
-    // Calcula a largura de um card + espaçamento (aprox 220px + 20px gap)
-    const scrollAmount = 240; 
-    
-    // Rola suavemente
-    container.scrollBy({
-        left: direction * scrollAmount,
-        behavior: 'smooth'
-    });
-}
-
-// --- CONTROLE INTELIGENTE DOS BOTÕES DO CARROSSEL ---
-
-function atualizarBotoesCarrossel(containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    // Encontra o pai (wrapper) para achar os botões 'prev' e 'next' irmãos do container
-    const wrapper = container.parentElement;
-    const btnPrev = wrapper.querySelector('.nav-btn.prev');
-    const btnNext = wrapper.querySelector('.nav-btn.next');
-
-    // Lógica: Se o conteúdo total (scrollWidth) for maior que a área visível (clientWidth)
-    // então precisamos dos botões. Caso contrário, escondemos.
-    if (container.scrollWidth > container.clientWidth) {
-        if(btnPrev) btnPrev.style.display = 'flex';
-        if(btnNext) btnNext.style.display = 'flex';
-    } else {
-        if(btnPrev) btnPrev.style.display = 'none';
-        if(btnNext) btnNext.style.display = 'none';
-    }
-}
-
-// --- EVENTO DE REDIMENSIONAMENTO ---
-// Se o usuário diminuir a janela, pode ser que os itens passem a precisar de scroll.
-// Se aumentar, pode ser que caibam todos e não precise mais.
-window.addEventListener('resize', () => {
-    // Lista de todos os IDs de carrosséis que usamos
-    const carrosseis = ['gridFreteGratis', 'gridDestaques', 'gridMaisProcurados', 'gridMarcas'];
-    carrosseis.forEach(id => atualizarBotoesCarrossel(id));
-});
-
-// Seleciona os elementos
-const menuOverlay = document.getElementById('menuOverlay');
-const sidebarMenu = document.getElementById('sidebarMenu');
-
-// Função para abrir/fechar o menu
-function toggleMenu() {
-    const isOpen = sidebarMenu.classList.contains('open');
-    
-    if(isOpen) {
-        // Se estiver aberto, remove a classe 'open' (fecha)
-        sidebarMenu.classList.remove('open');
-        menuOverlay.classList.remove('open');
-    } else {
-        // Se estiver fechado, adiciona a classe 'open' (abre)
-        sidebarMenu.classList.add('open');
-        menuOverlay.classList.add('open');
-    }
-}
-
-// Atualize a função navigateTo para incluir 'profile'
-function navigateTo(viewId) {
-    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-    
-    if (viewId === 'home') renderHome();
-    if (viewId === 'favorites') renderFavoritos();
-    if (viewId === 'profile') renderPerfil(); // Nova chamada
-    
-    document.getElementById(`view-${viewId}`).classList.add('active');
-    window.scrollTo(0, 0);
-}
+// ==========================================
+// 9. PERFIL E HISTÓRICO (DETALHE CLIENTE)
+// ==========================================
 
 function renderPerfil() {
     const tbody = document.getElementById('historyBody');
-    tbody.innerHTML = historicoCompras.map(compra => `
-        <tr>
-            <td>${compra.data}</td>
-            <td>${compra.pedido}</td>
-            <td style="color: green; font-weight: bold;">${compra.status}</td>
-            <td>${compra.total}</td>
-        </tr>
-    `).join('');
-}
+    if (!tbody) return;
 
-function renderFiltrosLaterais() {
-    const container = document.getElementById('filter-brands-list');
-    const marcasUnicas = [...new Set(produtos.map(p => p.marca))];
-    container.innerHTML = marcasUnicas.map(marca => `
-        <label><input type="checkbox" class="filter-brand" value="${marca}"> ${marca}</label>
-    `).join('');
-}
-
-function aplicarFiltrosAvancados() {
-    const marcasSelecionadas = Array.from(document.querySelectorAll('.filter-brand:checked')).map(el => el.value);
-    const precosSelecionados = Array.from(document.querySelectorAll('.filter-price:checked')).map(el => el.value);
-
-    let filtrados = produtos;
-
-    if (marcasSelecionadas.length > 0) {
-        filtrados = filtrados.filter(p => marcasSelecionadas.includes(p.marca));
-    }
-
-    if (precosSelecionados.length > 0) {
-        filtrados = filtrados.filter(p => {
-            if (precosSelecionados.includes("0-200") && p.preco <= 200) return true;
-            if (precosSelecionados.includes("200-1000") && p.preco > 200 && p.preco <= 1000) return true;
-            if (precosSelecionados.includes("1000+") && p.preco > 1000) return true;
-            return false;
-        });
-    }
-
-    mostrarLista(filtrados, "Resultados Filtrados");
-}
-
-// Chame renderFiltrosLaterais() dentro do window.onload
-
-// --- DADOS ADICIONAIS ---
-const historicoPedidos = [
-    { id: "1025", data: "15/12/2025", total: 489.90, status: "Entregue" },
-    { id: "1032", data: "02/01/2026", total: 195.00, status: "Processando" }
-];
-
-// 1. Adicione os dados do histórico no topo do script.js
-const historicoFake = [
-    { data: "05/01/2026", itens: "2x Compressor, 1x Gás", status: "Finalizado" },
-    { data: "02/01/2026", itens: "1x Kit Manifold", status: "Pendente" }
-];
-
-// 2. Atualize a função navigateTo
-function navigateTo(viewId) {
-    // Esconde todas as seções
-    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-    
-    // Se for para a home, renderiza os carrosséis
-    if (viewId === 'home') renderHome();
-    
-    // Se for para o perfil, renderiza o histórico
-    if (viewId === 'profile') renderPerfil();
-
-    // Mostra a seção desejada
-    const target = document.getElementById(`view-${viewId}`);
-    if (target) target.classList.add('active');
-    
-    window.scrollTo(0, 0);
-}
-
-// 3. Função para desenhar a tabela de histórico
-function renderPerfil() {
-    const container = document.getElementById('historyBody');
-    if (!container) return;
-
-    container.innerHTML = historicoFake.map(item => `
+    tbody.innerHTML = historicoPedidos.map(pedido => `
         <tr style="border-top: 1px solid #eee; font-size: 14px;">
-            <td style="padding: 12px 0;">${item.data}</td>
-            <td>${item.itens}</td>
-            <td style="color: ${item.status === 'Finalizado' ? 'green' : 'orange'}; font-weight: bold;">
-                ${item.status}
+            <td style="padding: 12px 0;">${pedido.data}</td>
+            <td>${pedido.itens.length} item(ns)</td>
+            <td style="color: ${pedido.status === 'Finalizado' || pedido.status === 'Entregue' ? 'green' : 'orange'}; font-weight: bold;">
+                ${pedido.status}
+            </td>
+            <td>R$ ${pedido.total.toFixed(2).replace('.', ',')}</td>
+            <td style="text-align: center;">
+                <button class="btn-detalhes" style="font-size: 12px;" onclick="abrirDetalhesPedidoCliente('${pedido.id}')">Ver Detalhes</button>
             </td>
         </tr>
     `).join('');
 }
 
-// Atualize sua função navigateTo para incluir a view admin
-function navigateTo(viewId) {
-    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+function abrirDetalhesPedidoCliente(idPedido) {
+    const pedido = historicoPedidos.find(p => p.id === String(idPedido));
+    if(!pedido) return;
     
-    if (viewId === 'home') renderHome();
-    if (viewId === 'favorites') renderFavoritos();
-    if (viewId === 'admin') renderAdmin(); // Nova chamada
+    document.getElementById('clienteOrderIdTitle').innerText = `#${pedido.id}`;
+    const body = document.getElementById('clienteOrderDetailBody');
     
-    document.getElementById(`view-${viewId}`).classList.add('active');
-    window.scrollTo(0, 0);
+    let html = `
+        <p><strong>Data da Compra:</strong> ${pedido.data}</p>
+        <p><strong>Status:</strong> <span style="color: ${pedido.status === 'Finalizado' ? 'green' : 'orange'}; font-weight: bold;">${pedido.status}</span></p>
+        <p><strong>Total Pago:</strong> R$ ${pedido.total.toFixed(2).replace('.', ',')}</p>
+        <hr style="margin: 15px 0;">
+        <h4 style="margin-bottom: 15px; color: var(--azul-escuro);">Itens Comprados:</h4>
+    `;
+
+    pedido.itens.forEach(item => {
+        html += `
+            <div style="display: flex; gap: 15px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px; align-items: center;">
+                <img src="${item.img}" style="width: 60px; height: 60px; object-fit: contain; border: 1px solid #ddd; border-radius: 4px; padding: 2px;">
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: var(--azul-escuro);">${item.nome}</div>
+                    <div style="font-size: 13px; color: #666;">${item.qtd}x R$ ${item.preco.toFixed(2).replace('.', ',')}</div>
+                </div>
+                <button class="btn-add-cart" style="padding: 5px 10px; font-size: 12px; height: fit-content; min-width: auto; display:flex; align-items:center;" onclick="recomprarItem(${item.id}, ${item.qtd})" title="Adicionar este item ao carrinho">
+                    <span class="material-icons" style="font-size: 18px;">add_shopping_cart</span>
+                </button>
+            </div>
+        `;
+    });
+
+    html += `
+        <button onclick="comprarPedidoNovamente('${pedido.id}')" class="btn-buy-now" style="width: 100%; margin-top: 10px; font-size: 14px;">
+            <span class="material-icons" style="font-size: 18px;">shopping_bag</span> Adicionar Pedido Inteiro ao Carrinho
+        </button>
+    `;
+
+    body.innerHTML = html;
+    document.getElementById('clienteOrderDetailModal').classList.add('open');
 }
+
+function fecharModalPedidoCliente() {
+    const modal = document.getElementById('clienteOrderDetailModal');
+    if(modal) modal.classList.remove('open');
+}
+
+function comprarPedidoNovamente(idPedido) {
+    const pedido = historicoPedidos.find(p => p.id === String(idPedido));
+    if(!pedido) return;
+
+    pedido.itens.forEach(item => {
+        const prod = produtos.find(p => p.id === item.id);
+        if (prod) {
+            const itemExistente = carrinho.find(c => c.id === item.id);
+            if (itemExistente) {
+                itemExistente.qtd += item.qtd;
+            } else {
+                carrinho.push({ ...prod, qtd: item.qtd });
+            }
+        }
+    });
+    
+    atualizarCarrinhoUI();
+    fecharModalPedidoCliente();
+    toggleCart(true); 
+}
+
+// ==========================================
+// 10. PAINEL ADMIN (PEDIDOS)
+// ==========================================
 
 function renderAdmin(listaFiltrada = pedidos) {
     const tbody = document.getElementById('adminPedidosLista');
+    if(!tbody) return;
     tbody.innerHTML = '';
 
     listaFiltrada.forEach(pedido => {
@@ -648,7 +701,7 @@ function renderAdmin(listaFiltrada = pedidos) {
             <td>${pedido.data.split('-').reverse().join('/')}</td>
             <td>${pedido.cliente}</td>
             <td>R$ ${pedido.valorTotal.toFixed(2)}</td>
-            <td><span class="status-badge status-${pedido.status.toLowerCase()}">${pedido.status}</span></td>
+            <td><span class="status-badge status-${pedido.status.toLowerCase().replace(' ', '-')}">${pedido.status}</span></td>
             <td><button class="btn-detalhes" onclick="verDetalhesPedido(${pedido.id})">Detalhes</button></td>
         `;
         tbody.appendChild(tr);
@@ -672,6 +725,8 @@ function filtrarPedidosAdmin() {
 
 function verDetalhesPedido(id) {
     const p = pedidos.find(pedido => pedido.id === id);
+    if(!p) return;
+    
     const modal = document.getElementById('orderDetailModal');
     const body = document.getElementById('orderDetailBody');
 
@@ -710,15 +765,193 @@ function atualizarStatusPedido(id, novoStatus) {
 }
 
 function fecharModalPedido() {
-    document.getElementById('orderDetailModal').classList.remove('open');
+    const modal = document.getElementById('orderDetailModal');
+    if(modal) modal.classList.remove('open');
 }
 
 function limparFiltrosAdmin() {
-    // 1. Reseta os valores dos elementos de input
     document.getElementById('adminSearch').value = '';
     document.getElementById('filterStatus').value = 'todos';
     document.getElementById('filterDate').value = '';
-
-    // 2. Chama a renderização original passando a lista completa de pedidos
     renderAdmin(pedidos);
 }
+
+// ==========================================
+// 11. CONTROLE DE ESTOQUE
+// ==========================================
+
+function renderEstoque() {
+    const tbody = document.getElementById('estoqueLista');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    produtos.forEach(prod => {
+        const statusClasse = prod.estoque <= 2 ? 'estoque-baixo' : 'estoque-ok';
+        
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>#${prod.id}</td>
+            <td>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <img src="${prod.img}" style="width: 40px; height: 40px; object-fit: contain; border: 1px solid #eee; border-radius: 4px;">
+                    <div>
+                        <div style="font-weight: 500;">${prod.nome}</div>
+                        <div style="font-size: 12px; color: #888;">${prod.categoria} | ${prod.marca}</div>
+                    </div>
+                </div>
+            </td>
+            <td>R$ ${prod.preco.toFixed(2).replace('.', ',')}</td>
+            <td>
+                <span class="${statusClasse} estoque-qtd-display">${prod.estoque} un.</span>
+            </td>
+            <td style="text-align: right;">
+                <button class="btn-estoque btn-estoque-edit" title="Editar" onclick="abrirModalProduto(${prod.id})">
+                    <span class="material-icons" style="font-size: 18px;">edit</span>
+                </button>
+                <button class="btn-estoque btn-estoque-danger" title="Excluir" onclick="excluirProdutoEstoque(${prod.id})">
+                    <span class="material-icons" style="font-size: 18px;">delete</span>
+                </button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function preencherSelectsModal() {
+    const selectCat = document.getElementById('prodCat');
+    const selectMarca = document.getElementById('prodMarca');
+
+    const categoriasBase = ["Compressores", "Gases", "Ferramentas", "Elétrica", "Instalação", "Ventiladores"];
+    if(selectCat) selectCat.innerHTML = categoriasBase.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+
+    const marcasBase = marcas.map(m => m.nome);
+    const marcasDosProdutos = produtos.map(p => p.marca);
+    const marcasUnicas = [...new Set([...marcasBase, ...marcasDosProdutos])].sort(); 
+
+    if(selectMarca) selectMarca.innerHTML = marcasUnicas.map(marca => `<option value="${marca}">${marca}</option>`).join('');
+}
+
+function abrirModalProduto(id = null) {
+    const modal = document.getElementById('produtoModal');
+    const titulo = document.getElementById('modalProdutoTitle');
+    
+    preencherSelectsModal();
+    
+    if (id) {
+        const prod = produtos.find(p => p.id === id);
+        titulo.innerText = "Editar Produto";
+        document.getElementById('prodId').value = prod.id;
+        document.getElementById('prodNome').value = prod.nome;
+        document.getElementById('prodPreco').value = prod.preco;
+        document.getElementById('prodQtd').value = prod.estoque;
+        document.getElementById('prodCat').value = prod.categoria;
+        document.getElementById('prodMarca').value = prod.marca;
+        document.getElementById('prodImg').value = prod.img;
+    } else {
+        titulo.innerText = "Adicionar Novo Produto";
+        document.getElementById('formProduto').reset();
+        document.getElementById('prodId').value = ""; 
+    }
+    
+    modal.classList.add('open');
+}
+
+function fecharModalProduto() {
+    const modal = document.getElementById('produtoModal');
+    if(modal) modal.classList.remove('open');
+}
+
+function salvarProdutoEstoque(event) {
+    event.preventDefault(); 
+    
+    const idField = document.getElementById('prodId').value;
+    
+    const dadosProduto = {
+        nome: document.getElementById('prodNome').value,
+        preco: parseFloat(document.getElementById('prodPreco').value),
+        estoque: parseInt(document.getElementById('prodQtd').value),
+        categoria: document.getElementById('prodCat').value,
+        marca: document.getElementById('prodMarca').value,
+        img: document.getElementById('prodImg').value,
+        destaque: false, freteGratis: false, maisVendido: false
+    };
+
+    if (idField === "") {
+        const novoId = produtos.length > 0 ? Math.max(...produtos.map(p => p.id)) + 1 : 1;
+        dadosProduto.id = novoId;
+        produtos.push(dadosProduto);
+        alert("Produto adicionado com sucesso!");
+    } else {
+        const id = parseInt(idField);
+        const index = produtos.findIndex(p => p.id === id);
+        if (index !== -1) {
+            produtos[index] = { ...produtos[index], ...dadosProduto };
+            alert("Produto atualizado com sucesso!");
+        }
+    }
+
+    fecharModalProduto();
+    renderEstoque(); 
+    renderHome(); 
+}
+
+function excluirProdutoEstoque(id) {
+    if (confirm("Tem certeza que deseja excluir este produto do catálogo?")) {
+        const index = produtos.findIndex(p => p.id === id);
+        if (index !== -1) {
+            produtos.splice(index, 1);
+            renderEstoque();
+            renderHome();
+        }
+    }
+}
+
+// ==========================================
+// 12. UTILITÁRIOS
+// ==========================================
+
+function toggleMenu() {
+    const sidebarMenu = document.getElementById('sidebarMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    if(!sidebarMenu || !menuOverlay) return;
+
+    const isOpen = sidebarMenu.classList.contains('open');
+    if(isOpen) {
+        sidebarMenu.classList.remove('open');
+        menuOverlay.classList.remove('open');
+    } else {
+        sidebarMenu.classList.add('open');
+        menuOverlay.classList.add('open');
+    }
+}
+
+function scrollCarousel(containerId, direction) {
+    const container = document.getElementById(containerId);
+    if(!container) return;
+    const scrollAmount = 240; 
+    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+}
+
+function atualizarBotoesCarrossel(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const wrapper = container.parentElement;
+    if(!wrapper) return;
+    
+    const btnPrev = wrapper.querySelector('.nav-btn.prev');
+    const btnNext = wrapper.querySelector('.nav-btn.next');
+
+    if (container.scrollWidth > container.clientWidth) {
+        if(btnPrev) btnPrev.style.display = 'flex';
+        if(btnNext) btnNext.style.display = 'flex';
+    } else {
+        if(btnPrev) btnPrev.style.display = 'none';
+        if(btnNext) btnNext.style.display = 'none';
+    }
+}
+
+window.addEventListener('resize', () => {
+    const carrosseis = ['gridFreteGratis', 'gridDestaques', 'gridMaisProcurados', 'gridMarcas'];
+    carrosseis.forEach(id => atualizarBotoesCarrossel(id));
+});
