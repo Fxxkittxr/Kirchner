@@ -68,6 +68,23 @@
             <li><a href="#footer-contato" onclick="toggleMenu()"><span class="material-icons">contact_support</span> Fale Conosco</a></li>
         </ul>
 
+        <div class="divider" style="background: var(--laranja); height: 2px;"></div>
+        <h3 style="color: var(--laranja); margin-top: 15px;">Administração</h3>
+        <ul>
+            <li><a href="#" onclick="navigateTo('admin'); toggleMenu()"><span class="material-icons">receipt_long</span> Pedidos Recebidos</a></li>
+            <li><a href="#" onclick="navigateTo('estoque'); toggleMenu()"><span class="material-icons">inventory_2</span> Controle de Estoque</a></li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h3>Institucional</h3>
+        <ul>
+            <li><a href="#" onclick="navigateTo('profile'); toggleMenu();"><span class="material-icons">account_circle</span> Minha Conta</a></li>
+            <li><a href="#"><span class="material-icons">local_shipping</span> Rastrear Pedido</a></li>
+            <li><a href="https://refrigeracaokirchner.ind.br/"><span class="material-icons">store</span> Sobre a Empresa</a></li>
+            <li><a href="#footer-contato" onclick="toggleMenu()"><span class="material-icons">contact_support</span> Fale Conosco</a></li>
+        </ul>
+
         <div id="admin-sidebar-section" style="display: none;">
             <div class="divider" style="background: var(--laranja); height: 2px;"></div>
             <h3 style="color: var(--laranja); margin-top: 15px;">Administração</h3>
@@ -413,7 +430,8 @@
     <div class="modal-overlay" id="cartModal">
         <div class="cart-sidebar">
             <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
-                <h2>Carrinho</h2>
+
+                <h2>Orçamento</h2>
                 <button onclick="toggleCart()" style="border:none; background:none; font-size:20px; cursor:pointer;">×</button>
             </div>
             <div style="flex:1; overflow-y:auto;" id="cartItemsContainer"></div>
@@ -423,7 +441,7 @@
                     <span id="cartTotal">R$ 0,00</span>
                 </div>
                 <button onclick="abrirPaginaCarrinho()" style="width:100%; padding:10px; background:var(--azul-escuro); color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer; margin-bottom: 10px;">
-                    Expandir carrinho
+                    Expandir Orçamento
                 </button>
                 <button onclick="finalizarZap()" style="width:100%; padding:15px; background:var(--zap-cor); color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">
                     Pedir no WhatsApp
@@ -449,6 +467,7 @@
                 <button onclick="fecharModalProduto()" style="border:none; background:none; font-size:24px; cursor:pointer;">×</button>
             </div>
             <div style="flex:1; overflow-y:auto; padding-right: 10px;">
+<<<<<<< HEAD
             <form id="formProduto" onsubmit="salvarProdutoEstoque(event)">
                 <input type="hidden" id="prodId">
                 
@@ -516,6 +535,7 @@
 
                 <button type="submit" class="btn-submit" style="margin-top: 15px; width: 100%;">Salvar Produto no Sistema</button>
             </form>
+
             </div>
         </div>
     </div>
@@ -568,4 +588,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 71d0b7c336454ba9d7b42ad4a2cad48dfe76b3c0

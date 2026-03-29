@@ -93,8 +93,6 @@ window.onload = () => {
     renderFiltrosLaterais(); // Gera os filtros laterais ao abrir o site
 };
 
-let usuarioLogado = null;
-
 function navigateTo(viewId) {
     // 1. Esconde todas as seções
     document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
