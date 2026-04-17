@@ -25,6 +25,8 @@ let pedidos = [
     }
 ];
 
+usuarioLogado = null
+
 // --- ADICIONADO: Atributos avançados (voltagem, cor, gas, capacidade) para os filtros funcionarem ---
 const produtos = [
     { id: 1, nome: "Compressor Embraco 1/4 HP 110v R134a", categoria: "Compressores", marca: "Embraco", preco: 489.90, estoque: 15, img: "https://www.girellirefrigeracao.com.br/upload/produto/imagem/s_motor-compressor-embraco-1-4-r134a-emr-80hlr-110v-4.webp", destaque: true, freteGratis: true, maisVendido: true, voltagem: "110v", cor: "Preto", gas: "R134a", capacidade: "1/4 HP" },
