@@ -197,3 +197,22 @@ footer {
     .product-detail-container { flex-direction: column; }
     .cart-page-layout { grid-template-columns: 1fr; }
 }
+
+.tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+    color: var(--azul-claro);
+    border-bottom-color: var(--azul-claro);
+}
+
+.tab-content {
+    animation: fadeIn 0.3s;
+}

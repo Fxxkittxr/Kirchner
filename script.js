@@ -1235,3 +1235,82 @@ function salvarCadastro(event) {
     alert("Cadastro pré-aprovado! Enviamos um link de validação para: " + email);
     navigateTo('profile');
 }
+
+//ALTERNAR ABAS DE PERFIL
+function switchTab(tabId) {
+    // Remove active de todos os botões e conteúdos
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
+
+    // Ativa a aba clicada
+    event.target.classList.add('active');
+    document.getElementById(`tab-${tabId}`).style.display = 'block';
+
+    // Se abrir a aba de favoritos ou pedidos, renderiza o conteúdo atualizado
+    if(tabId === 'favoritos-aba') renderFavoritosPerfil();
+    if(tabId === 'pedidos') renderPerfil(); 
+}
+
+// Renderizar favoritos especificamente dentro da aba do perfil
+function renderFavoritosPerfil() {
+    const grid = document.getElementById('gridFavoritosPerfil');
+    if(!grid) return;
+    
+    grid.innerHTML = '';
+    const listaFav = produtos.filter(p => favoritos.includes(p.id));
+
+    if(listaFav.length === 0) {
+        grid.innerHTML = '<p style="padding: 20px;">Você ainda não tem produtos favoritos.</p>';
+    } else {
+        listaFav.forEach(prod => grid.appendChild(criarCard(prod)));
+    }
+}
+
+// Simulação de atualização de dados
+function atualizarDadosUsuario(event) {
+    event.preventDefault();
+    const nome = document.getElementById('editNome').value;
+    alert(`Dados de ${nome} atualizados com sucesso (simulação)!`);
+}
+
+// Função para salvar os dados editados
+function salvarEdicaoPerfil(event) {
+    event.preventDefault();
+    
+    const senha = document.getElementById('editPass').value;
+    const senhaConf = document.getElementById('editPassConf').value;
+
+    // Validação básica de senha
+    if (senha && senha !== senhaConf) {
+        alert("As senhas não coincidem!");
+        return;
+    }
+
+    // Aqui você capturaria todos os valores para enviar ao banco futuramente
+    const dadosAtualizados = {
+        nome: document.getElementById('editNome').value,
+        cpf: document.getElementById('editCPF').value,
+        telefone: document.getElementById('editTel').value,
+        email: document.getElementById('editEmail').value,
+        endereco: document.getElementById('editEnd').value
+    };
+
+    console.log("Salvando dados:", dadosAtualizados);
+    alert("Dados atualizados com sucesso!");
+}
+
+// Auxiliares para melhorar a interface (UX)
+function mascaraCPF(i) {
+    let v = i.value.replace(/\D/g, "");
+    v = v.replace(/(\d{3})(\d)/, "$1.$2");
+    v = v.replace(/(\d{3})(\d)/, "$1.$2");
+    v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    i.value = v;
+}
+
+function mascaraTel(i) {
+    let v = i.value.replace(/\D/g, "");
+    v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
+    v = v.replace(/(\d)(\d{4})$/, "$1-$2");
+    i.value = v;
+}

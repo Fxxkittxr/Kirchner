@@ -253,36 +253,98 @@
         </div>
     </div>
 
-    <div id="view-profile" class="view-section">
-        <div class="container" style="margin-top: 30px;">
-            <div id="login-container" style="max-width: 400px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                <h2 style="text-align: center; color: var(--azul-escuro); margin-bottom: 20px;">Acessar Conta</h2>
-                <form onsubmit="realizarLogin(event)">
-                    <div class="form-group">
-                        <label>Usuário</label>
-                        <input type="text" id="loginUser" required placeholder="Digite 'adm'">
-                    </div>
-                    <div class="form-group">
-                        <label>Senha</label>
-                        <input type="password" id="loginPass" required placeholder="Digite '123456k'">
-                    </div>
-                    <button type="submit" class="btn-buy-now" style="width: 100%; font-size: 16px;">Entrar</button>
-                </form>
-                <p id="loginError" style="color: var(--laranja); font-size: 13px; margin-top: 10px; display: none; text-align: center;">Usuário ou senha incorretos.</p>
-                
-                <div style="margin-top: 20px; text-align: center; font-size: 14px; color: #666;">
-                    Novo por aqui? <a href="javascript:void(0)" onclick="navigateTo('register')" style="color: var(--azul-claro); font-weight: bold; text-decoration: none;">Faça seu cadastro</a>
+<div id="view-profile" class="view-section">
+    <div class="container" style="margin-top: 30px; margin-bottom: 50px;">
+        <div id="login-container" style="max-width: 400px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <h2 style="text-align: center; color: var(--azul-escuro); margin-bottom: 20px;">Acessar Conta</h2>
+            <form onsubmit="realizarLogin(event)">
+                <div class="form-group">
+                    <label>Usuário</label>
+                    <input type="text" id="loginUser" required placeholder="Digite seu usuário">
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="loginPass" required placeholder="******">
+                </div>
+                <button type="submit" class="btn-buy-now" style="width: 100%; font-size: 16px;">Entrar</button>
+            </form>
+            <p id="loginError" style="color: var(--laranja); font-size: 13px; display: none; text-align: center;">Usuário ou senha incorretos.</p>
+        </div>
+
+        <div id="profile-content" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="color: var(--azul-escuro);">Minha Conta</h2>
+                <button onclick="logout()" class="btn-estoque" style="color: var(--laranja); border-color: var(--laranja);">Sair</button>
+            </div>
+
+            <div class="profile-tabs" style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #ddd;">
+                <button class="tab-btn active" onclick="switchTab('dados')">Meus Dados</button>
+                <button class="tab-btn" onclick="switchTab('pedidos')">Pedidos</button>
+                <button class="tab-btn" onclick="switchTab('favoritos-aba')">Favoritos</button>
+            </div>
+
+            <div id="tab-dados" class="tab-content active">
+    <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); max-width: 600px;">
+        <h3 style="margin-bottom: 20px; color: var(--azul-escuro);">Editar Meus Dados</h3>
+        <form onsubmit="salvarEdicaoPerfil(event)">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="form-group" style="grid-column: span 2;">
+                    <label>Nome Completo</label>
+                    <input type="text" id="editNome" value="Paloma Teixeira Pinheiro de Souza" required>
+                </div>
+                <div class="form-group">
+                    <label>CPF</label>
+                    <input type="text" id="editCPF" placeholder="000.000.000-00" oninput="mascaraCPF(this)">
+                </div>
+                <div class="form-group">
+                    <label>Telefone</label>
+                    <input type="text" id="editTel" placeholder="(47) 99999-9999" oninput="mascaraTel(this)">
+                </div>
+                <div class="form-group" style="grid-column: span 2;">
+                    <label>E-mail</label>
+                    <input type="email" id="editEmail" value="paloma@email.com" required>
+                </div>
+                <div class="form-group" style="grid-column: span 2;">
+                    <label>Endereço de Entrega</label>
+                    <input type="text" id="editEnd" placeholder="Rua, número, bairro - Joinville/SC">
+                </div>
+                <div class="form-group">
+                    <label>Nova Senha</label>
+                    <input type="password" id="editPass" placeholder="******">
+                </div>
+                <div class="form-group">
+                    <label>Confirmar Senha</label>
+                    <input type="password" id="editPassConf" placeholder="******">
+                </div>
+            </div>
+            <button type="submit" class="btn-buy-now" style="margin-top: 20px; width: 100%;">Salvar Alterações</button>
+        </form>
+    </div>
+</div>
+
+            <div id="tab-pedidos" class="tab-content" style="display: none;">
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody"></tbody>
+                    </table>
                 </div>
             </div>
 
-            <div id="profile-content" style="display: none;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2 style="color: var(--azul-escuro);">Minha Conta</h2>
-                    <button onclick="logout()" class="btn-estoque" style="color: var(--laranja); border-color: var(--laranja);">Sair</button>
+            <div id="tab-favoritos-aba" class="tab-content" style="display: none;">
+                <div id="gridFavoritosPerfil" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
                 </div>
-                </div>
+            </div>
         </div>
     </div>
+</div>
 
     <div id="view-register" class="view-section">
         <div class="container" style="margin-top: 30px; margin-bottom: 50px;">
